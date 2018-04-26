@@ -1,0 +1,6 @@
+<?php
+header('Content-disposition: inline');
+header('Content-type: application/msword'); use correct MIME type
+readfile('asdf.doc');
+exit;
+?>

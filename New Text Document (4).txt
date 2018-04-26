@@ -1,0 +1,23 @@
+<?php
+
+$array1 = array('Mobile', 'shop', 'software', 'hardware');
+$array2 = array('shop', 'Mobile', 'shop', 'software', 'shop', array('shop', 'Mobile'));
+
+function isInArray($array, $searchIn) {
+    static $inc = array();
+    
+    foreach ($array as $v) {
+        if (is_array($v) && sizeof($v) > 0) {
+            isInArray($v, $searchIn);
+        } else if (!is_array($v) && in_array($v, $searchIn)) {
+            isset($inc[$v]) ? $inc[$v]++ : $inc[$v] = 1;
+        }
+    }
+    
+    return $inc;
+}
+
+$totals = isInArray($array2, $array1);
+var_dump($totals);
+
+?>
